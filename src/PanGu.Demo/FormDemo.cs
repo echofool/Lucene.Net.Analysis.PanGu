@@ -18,7 +18,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -55,6 +54,7 @@ namespace Demo
         private void FormDemo_Load(object sender, EventArgs e)
         {
             textBoxSource.Text = _InitSource;
+            //PanGu.Segment.Init("PanGu.xml");
             PanGu.Segment.Init();
 
             PanGu.Match.MatchOptions options = PanGu.Setting.PanGuSettings.Config.MatchOptions;

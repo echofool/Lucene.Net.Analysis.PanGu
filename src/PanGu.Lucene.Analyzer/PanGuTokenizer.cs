@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.IO;
 using Lucene.Net.Analysis;
 using PanGu;
 using Lucene.Net.Analysis.Tokenattributes;
-
+using PanGu.Setting;
 namespace Lucene.Net.Analysis.PanGu
 {
     public class PanGuTokenizer : Tokenizer
@@ -61,7 +62,8 @@ namespace Lucene.Net.Analysis.PanGu
             typeAtt = AddAttribute<ITypeAttribute>();
         }
 
-        public PanGuTokenizer(System.IO.TextReader input, bool originalResult):this(input)
+        public PanGuTokenizer(System.IO.TextReader input, bool originalResult)
+            : this(input)
         {
             _OriginalResult = originalResult;
         }
@@ -75,7 +77,7 @@ namespace Lucene.Net.Analysis.PanGu
         }
 
         public PanGuTokenizer(System.IO.TextReader input)
-            : base(input) 
+            : base(input)
         {
             lock (_LockObj)
             {
@@ -113,7 +115,7 @@ namespace Lucene.Net.Analysis.PanGu
             else
             {
                 global::PanGu.Segment segment = new Segment();
-                ICollection<WordInfo> wordInfos = segment.DoSegment(_InputText);
+                ICollection<WordInfo> wordInfos = segment.DoSegment(_InputText, PanGuSettings.Config.MatchOptions, PanGuSettings.Config.Parameters);
                 _WordList = new WordInfo[wordInfos.Count];
                 wordInfos.CopyTo(_WordList, 0);
             }
@@ -140,7 +142,7 @@ namespace Lucene.Net.Analysis.PanGu
             if (_OriginalResult)
             {
                 string retStr = _InputText;
-                
+
                 _InputText = null;
 
                 if (retStr == null)

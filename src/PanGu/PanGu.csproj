@@ -37,11 +37,7 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +46,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AnalyzerResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="ChineseStringUtility.cs" />
     <Compile Include="Dict\DictionaryLoader.cs" />
     <Compile Include="Dict\StopWord.cs" />
     <Compile Include="Dict\Synonym.cs" />
